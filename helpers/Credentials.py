@@ -1,11 +1,13 @@
 class Credentials:
 
     # set up watson NLU credentials
-    watson_version = ''
     watson_username = ''
     watson_password = ''
-    watson_url = ''
+    watson_version = '2018-03-16'
+    watson_url = 'https://gateway.watsonplatform.net/natural-language-understanding/api'
 
     # set up twitter credentials
-    twitter_api_key = ""
-    twitter_api_secret = ""
+    twitter_consumer_api_key = ""
+    twitter_consumer_api_secret = ""
+    twitter_access_token = ""
+    twitter_access_token_secret = ""

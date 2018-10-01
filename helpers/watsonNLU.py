@@ -1,6 +1,6 @@
-import json
+# import NLU dependencies
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
-from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions
+from watson_developer_cloud.natural_language_understanding_v1 import Features, KeywordsOptions
 
 # get the credentials
 from Credentials import Credentials
@@ -30,4 +30,4 @@ class WatsonNLU:
 
     # accepts the response from watson analysis
     def checkMood(self, response):
-        print(json.dumps(response, indent=2))
+        
