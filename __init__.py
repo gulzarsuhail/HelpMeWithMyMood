@@ -1,11 +1,3 @@
-from flask import Flask
+import webui
 
-app = Flask(__name__)
-
-@app.route('/')
-def homepage():
-    return "Hi there, how ya doin?"
-
-
-if __name__ == "__main__":
-    app.run()
+import helpers

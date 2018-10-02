@@ -11,3 +11,6 @@ class Credentials:
     twitter_consumer_api_secret = ""
     twitter_access_token = ""
     twitter_access_token_secret = ""
+
+    # set up mongobd credentials
+    mongodb_path = "mongodb://localhost:27017/"
