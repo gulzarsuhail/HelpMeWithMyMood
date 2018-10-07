@@ -2,7 +2,7 @@
 import pymongo
 
 # import project credentials
-from credentials import Credentials
+from helpers.credentials import Credentials
 
 # connect to mongodb
 myclient = pymongo.MongoClient(Credentials.mongodb_path)
@@ -27,13 +27,14 @@ def newTweets(insert_tweets):
     # insert required tweet data into newTweets
     for post in insert_tweets:
         newTweets.append({
-            'screen_name': post.screen_name,
-            'text': post.text,
-            'favorited': post.favorited,
-            'created_at': post.created_at,
-            'tweet_id': post.id,
-            'emotion': post.emotion,
-            'sentiment': post.sentiment
+            'screen_name': post['screen_name'],
+            'text': post['text'],
+            'favorited': post['favorited'],
+            'created_at': post['created_at'],
+            'tweet_id': post['id'],
+            'emotion': post['emotion'],
+            'sentiment': post['sentiment'],
+            'emotion_score': post['emotion_score']
         })
 
     # insert tweets into database

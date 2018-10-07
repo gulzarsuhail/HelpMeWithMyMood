@@ -2,9 +2,7 @@
 import threading
 
 # import project files
-import db
-import watsonNLU as NLU
-import twitter as Twitter
+from helpers import db, watsonNLU as NLU, twitter as Twitter
 
 # do a NLU check on tweets
 def nluCheckTweets(tweets):
@@ -12,16 +10,18 @@ def nluCheckTweets(tweets):
     result = []
     for tweet in tweets:
         # analize the tweet
-        analysis = NLU.analyze(tweet.text)
+        analysis = NLU.analyze(tweet['text'])
         # set analysis fields to the tweet
-        tweet.emotion = analysis.emotion
-        tweet.sentiment = analysis.sentiment
+        tweet['emotion'] = analysis['emotion']
+        tweet['sentiment'] = analysis['sentiment']
+        tweet['emotion_score'] = analysis['emotion_score']
         result.append(tweet)
     return result
 
 
 # schedule tweet refresh and analysis timer
 def scheduleTweetRefresh():
+    print ("Starting twitter refresh schedule...")
     threading.Timer(1800.0, scheduleTweetRefresh).start()
     # get all user names
     users = db.getAllUsers()

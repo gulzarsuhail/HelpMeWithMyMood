@@ -2,9 +2,8 @@
 import tweepy
 import datetime
 
-import json
 # get the credentials
-from credentials import Credentials
+from helpers.credentials import Credentials
 
 # initialize tweepy with credentials
 auth = tweepy.OAuthHandler(
@@ -28,7 +27,7 @@ def getTweetsSinceTweetId(author, since_tweet_id):
 
     # get the tweets from api
     tweets = api.user_timeline(
-        screen_name=author, count=2, since_id=since_tweet_id, include_rts=False, tweet_mode="extended")
+        screen_name=author, count=2, since_id=since_tweet_id, include_rts=True, tweet_mode="extended")
 
     # filter and return the tweets
     return filterTweetData(tweets)
