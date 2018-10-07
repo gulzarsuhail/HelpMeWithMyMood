@@ -21,7 +21,13 @@ app.register_blueprint(twitter_blueprint, url_prefix='/twitter_login')
 def twitter_login():
     if not twitter.authorized:
         return redirect(url_for('twitter.login'))
-    return redirect("/")
+    else:
+        account_info = twitter.get('account/settings.json')
+        if account_info.ok:
+            account_info_json = account_info.json()
+            return account_info_json
+        else:
+            return account_info
 
 @app.route('/')
 def homepage():
@@ -34,19 +40,22 @@ def homepage():
             account_info_json = account_info.json()
             screen_name = account_info_json['screen_name']
             helper.addUser(screen_name)
-            helper.getMood(screen_name)
-            if (screen_name == 'sadness'):
+            mood = helper.getMood(screen_name)
+            if (mood == 'sadness'):
                 return render_template("sadness.html")
-            elif (screen_name == 'joy'):
+            elif (mood == 'joy'):
                 return render_template("joy.html")
-            elif (screen_name is 'fear'):
+            elif (mood is 'fear'):
                 return render_template("fear.html")
-            elif (screen_name == 'disgust'):
+            elif (mood == 'disgust'):
                 return render_template("disgust.html")
-            elif (screen_name == 'anger'):
+            elif (mood == 'anger'):
                 return render_template("anger.html")
             else:
                 return render_template("unknown.html")
+        else:
+            return render_template("index.html")
+
 
 # start the server
 app.run()

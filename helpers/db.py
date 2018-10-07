@@ -74,4 +74,4 @@ def checkExistTweet(tweet):
 
 def getMoodOfUser(screen_name):
     x = tweets.find_one({'screen_name': screen_name},sort=[("created_at", -1)])
-    return x.emotion
+    return x['emotion']
