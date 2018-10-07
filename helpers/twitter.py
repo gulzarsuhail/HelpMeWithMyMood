@@ -7,9 +7,9 @@ from credentials import Credentials
 
 # initialize tweepy with credentials
 auth = tweepy.OAuthHandler(
-    Credentials.twitter_consumer_api_key, Credentials.twitter_consumer_api_secret)
-auth.set_access_token(Credentials.twitter_access_token,
-                        Credentials.twitter_access_token_secret)
+    "AB4XvGYaDrGYUhV3Sti9RZiJB", "oaTkWJgNmKgWPribqVyF8XXj9DNwxszbOijXWexwT16ybQVdFT")
+auth.set_access_token("279902624-RpUx58W9GQ0A3PWJOs8Ks6I1DSsuuyAzEXhvAOe4",
+                        "bKVbAe6w4dfg9EnCCWgGlHv7GkcwDQAVze9vH5KlxPwSK")
 
 api = tweepy.API(auth)
 
@@ -18,18 +18,7 @@ def getLastTweets(author):
 
     # get data from twitter api
     tweets = api.user_timeline(
-        screen_name=author, count=200, include_rts=False, tweet_mode="extended")
-
-    return filterTweetData(tweets)
-
-# gets tweets since the said tweet id
-def getTweetsSinceTweetId(author, since_tweet_id):
-
-    # get the tweets from api
-    tweets = api.user_timeline(
-        screen_name=author, count=2, since_id=since_tweet_id, include_rts=True, tweet_mode="extended")
-
-    # filter and return the tweets
+        screen_name=author, count=20, include_rts=False, tweet_mode="extended")
     return filterTweetData(tweets)
 
 # returns tweets with only the required data for the project

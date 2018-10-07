@@ -14,9 +14,14 @@ tweets = mydb["tweets"]
 
 # creates a new user
 def newUser(screen_name):
-    users.insert_one({
-        "screen_name": screen_name
-    })
+    # check if user alrady exists
+    if users.find({'screen_name': screen_name}).count() > 0:
+        return
+    else:
+        # user does not exist, create a new one
+        users.insert_one({
+            "screen_name": screen_name
+        })
 
 # add new tweets to the database
 def newTweets(insert_tweets):
@@ -49,5 +54,24 @@ def getAllUsers():
 
 # get the last tweet id
 def getLastTweetID(screen_name):
+    if tweets.find({'screen_name': screen_name}).count() > 0:
+        x = tweets.find_one({'screen_name': screen_name},sort=[("created_at", -1)])
+        return x['created_at']
+    else:
+        return 0
+
+# find a user
+def findUser(screen_name):
+    x = users.find_one({'screen_name': screen_name},sort=[("created_at", -1)])
+    return x
+
+# checks if tweet exists in database
+def checkExistTweet(tweet):
+    if tweets.find({'tweet_id': tweet['id']}).count() > 0:
+        return True
+    else:
+        return False
+
+def getMoodOfUser(screen_name):
     x = tweets.find_one({'screen_name': screen_name},sort=[("created_at", -1)])
-    return x['created_at']
+    return x.emotion
