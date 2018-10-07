@@ -55,4 +55,4 @@ def getUserTweets(user):
 scheduleTweetRefresh()
 
 def getMood(screen_name):
-    return db.getMoodOfUser(screen_name);
+    return db.getMoodOfUser(screen_name)

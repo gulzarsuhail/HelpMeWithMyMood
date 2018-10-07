@@ -7,9 +7,9 @@ from credentials import Credentials
 
 # initialize tweepy with credentials
 auth = tweepy.OAuthHandler(
-    "AB4XvGYaDrGYUhV3Sti9RZiJB", "oaTkWJgNmKgWPribqVyF8XXj9DNwxszbOijXWexwT16ybQVdFT")
-auth.set_access_token("279902624-RpUx58W9GQ0A3PWJOs8Ks6I1DSsuuyAzEXhvAOe4",
-                        "bKVbAe6w4dfg9EnCCWgGlHv7GkcwDQAVze9vH5KlxPwSK")
+    Credentials.twitter_consumer_api_key, Credentials.twitter_consumer_api_secret)
+auth.set_access_token(Credentials.twitter_access_token,
+                        Credentials.twitter_access_token_secret)
 
 api = tweepy.API(auth)
 
