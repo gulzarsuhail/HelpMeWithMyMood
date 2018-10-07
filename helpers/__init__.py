@@ -1,8 +1,11 @@
+
 # import dependencies
 import threading
 
-# import project files
-from helpers import db, watsonNLU as NLU, twitter as Twitter
+# import helper functions
+import helpers.db as db
+import helpers.watsonNLU as NLU
+import helpers.twitter as Twitter
 
 # do a NLU check on tweets
 def nluCheckTweets(tweets):
@@ -27,10 +30,29 @@ def scheduleTweetRefresh():
     users = db.getAllUsers()
     # refresh feed for each username
     for user in users:
-        lastTweet = db.getLastTweetID(user)
-        tweets = Twitter.getTweetsSinceTweetId(user, lastTweet)
-        nluCheckedTweets = nluCheckTweets(tweets)
+        getUserTweets(user)
+        
+
+def addUser(screen_name):
+    # create the user
+    db.newUser(screen_name)
+    # refresh the user feeds
+    x = db.findUser(screen_name)
+    # get user tweets
+    getUserTweets(x)
+
+def getUserTweets(user):
+    newTweets = []
+    tweets = Twitter.getLastTweets(user)
+    for tweet in tweets:
+        if not db.checkExistTweet(tweet):
+            newTweets.append(tweet)
+    if (len(newTweets)>0):
+        nluCheckedTweets = nluCheckTweets(newTweets)
         db.newTweets(nluCheckedTweets)
 
 # initialize the refresh schedule
 scheduleTweetRefresh()
+
+def getMood(screen_name):
+    return db.getMoodOfUser(screen_name)

@@ -3,7 +3,7 @@ import tweepy
 import datetime
 
 # get the credentials
-from helpers.credentials import Credentials
+from credentials import Credentials
 
 # initialize tweepy with credentials
 auth = tweepy.OAuthHandler(
@@ -18,18 +18,7 @@ def getLastTweets(author):
 
     # get data from twitter api
     tweets = api.user_timeline(
-        screen_name=author, count=200, include_rts=False, tweet_mode="extended")
-
-    return filterTweetData(tweets)
-
-# gets tweets since the said tweet id
-def getTweetsSinceTweetId(author, since_tweet_id):
-
-    # get the tweets from api
-    tweets = api.user_timeline(
-        screen_name=author, count=2, since_id=since_tweet_id, include_rts=True, tweet_mode="extended")
-
-    # filter and return the tweets
+        screen_name=author, count=20, include_rts=False, tweet_mode="extended")
     return filterTweetData(tweets)
 
 # returns tweets with only the required data for the project

@@ -3,7 +3,7 @@ from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import Features, KeywordsOptions
 
 # get the credentials
-from helpers.credentials import Credentials
+from credentials import Credentials
 
 # initialize NLU with watson credentials
 natural_language_understanding = NaturalLanguageUnderstandingV1(
