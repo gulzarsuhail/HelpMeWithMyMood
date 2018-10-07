@@ -3,7 +3,7 @@ import tweepy
 import datetime
 
 # get the credentials
-from helpers.credentials import Credentials
+from credentials import Credentials
 
 # initialize tweepy with credentials
 auth = tweepy.OAuthHandler(

@@ -2,7 +2,7 @@
 import pymongo
 
 # import project credentials
-from helpers.credentials import Credentials
+from credentials import Credentials
 
 # connect to mongodb
 myclient = pymongo.MongoClient(Credentials.mongodb_path)

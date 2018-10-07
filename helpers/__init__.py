@@ -1,8 +1,11 @@
+
 # import dependencies
 import threading
 
-# import project files
-from helpers import db, watsonNLU as NLU, twitter as Twitter
+# import helper functions
+import helpers.db as db
+import helpers.watsonNLU as NLU
+import helpers.twitter as Twitter
 
 # do a NLU check on tweets
 def nluCheckTweets(tweets):
@@ -28,6 +31,7 @@ def scheduleTweetRefresh():
     # refresh feed for each username
     for user in users:
         lastTweet = db.getLastTweetID(user)
+        print(user)
         tweets = Twitter.getTweetsSinceTweetId(user, lastTweet)
         nluCheckedTweets = nluCheckTweets(tweets)
         db.newTweets(nluCheckedTweets)
