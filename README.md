@@ -20,6 +20,8 @@ To install python dependencies
     pip3 install -r requirements.txt
 ```
 
+### Set up your twitter and Watson NLU credentials in credentials.py file
+
 To start the application
 
 ```
