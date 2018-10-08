@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<style>
+	html,
+	body {
+		background-color: 2377ff;
+		color: white;
+	}
+
+	.container {
+		padding-top: 40px;
+		min-height: 100%;
+		background-color: rgba(255, 255, 255, 0.1);
+		padding-bottom: 40px
+	}
+
+	.emotion {
+		display: block;
+		text-align: center;
+		font-size: 15em;
+		margin-top: 30px;
+	}
+
+	h1 {
+		text-align: center;
+	}
+
+	p {
+		display: block;
+		text-align: center;
+		font-size: 1.5em;
+		margin: 20px;
+	}
+
+	iframe {
+		margin: 0 auto;
+		align-content: center;
+		align-items: center;
+		display: block;
+	}
+</style>
+
+<div class="container">
+
+	{% if (mood=='disgust') %}
+
+	<h1>YOU SEEM TO BE DISGUSTED AT SOMETHING</h1>
+	<i class="fas emotion fa-flushed"></i>
+	<p>“I had forgotten. Disgust shadows desire. Another life is never safely envied.” ― Robert Wells</p>
+	<p>Maybe understanding disgust in itself will help?</p>
+	<iframe width="80%" height="60%" src="https://www.youtube.com/embed/5YL3LT1ZvOM" frameborder="0" allowfullscreen></iframe>
+
+	{% elif (mood=='fear') %}
+
+	<h1>YOU SEEM TO BE AFRAID</h1>
+	<i class="emotion fas fa-meh-blank"></i>
+	<p>"If you want to conquer fear, don't sit home and think about it. Go out and get busy." ― Dale Carnegie.</p>
+	<p>Maybe this will help?</p>
+	<iframe width="80%" height="60%" src="https://www.youtube.com/embed/?listType=playlist&list=PL3hSzXlZKYpM8XhxS0v7v4SB2aWLeCcUj"
+	 frameborder="0" allowfullscreen></iframe>
+
+	{% elif (mood=='anger') %}
+
+	<h1>YOU SEEM ANGRY</h1>
+	<i class="emotion fas fa-angry"></i>
+	<p>“For every minute you are angry you lose sixty seconds of happiness.” ― Ralph Waldo Emerson</p>
+	<p>Maybe follow this routine to calm you down?</p>
+	<iframe width="80%" height="60%" src="https://www.youtube.com/embed/IAODG6KaNBc" frameborder="0" allowfullscreen></iframe>
+
+
+	{% elif (mood=='sadness') %}
+	<h1>YOU SEEM SAD</h1>
+	<i class="emotion far fa-frown"></i>
+	<p>Maybe listen to these songs to cheer up?</p>
+	<iframe width="80%" height="60%" src="https://www.youtube.com/embed/?listType=playlist&list=PL3hSzXlZKYpM8XhxS0v7v4SB2aWLeCcUj"
+	 frameborder="0" allowfullscreen></iframe>
+
+	{% else %}
+	<h1>YOUR MOOD COULDN'T BE DETERMINED</h1>
+	<i class="fas emotion fa-dizzy"></i>
+	<p>Though, still, lets cheer up your mood</p>
+	<iframe width="80%" height="60%" src="https://www.youtube.com/embed/?listType=playlist&list=PL3hSzXlZKYpM8XhxS0v7v4SB2aWLeCcUj"
+	 frameborder="0" allowfullscreen></iframe>
+
+	{% endif %}
+</div>
+
+{% endblock %}

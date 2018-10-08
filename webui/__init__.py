@@ -7,7 +7,7 @@ import helpers as helper
 
 # create flash instance
 app = Flask(__name__)
-app.debug = True
+# app.debug = True
 app.config['SECRET_KEY'] = 'thisisasecretlol'
 
 # set twitter keys
@@ -32,7 +32,11 @@ def twitter_login():
 @app.route('/')
 def homepage():
     if not twitter.authorized:
-        return render_template("index.html")
+        mood = 'sadness'
+
+        # return render_template("index.html")
+        return render_template("sadness.html",mood=mood)
+
     else: 
         # add username to database
         account_info = twitter.get('account/settings.json')
@@ -41,20 +45,10 @@ def homepage():
             screen_name = account_info_json['screen_name']
             helper.addUser(screen_name)
             mood = helper.getMood(screen_name)
-            if (mood == 'sadness'):
-                return render_template("sadness.html")
-            elif (mood == 'joy'):
-                return render_template("joy.html")
-            elif (mood is 'fear'):
-                return render_template("fear.html")
-            elif (mood == 'disgust'):
-                return render_template("disgust.html")
-            elif (mood == 'anger'):
-                return render_template("anger.html")
-            else:
-                return render_template("unknown.html")
+            return render_template("mood.html", mood=mood)
         else:
-            return render_template("index.html")
+            mood = 'error'
+            return render_template("index.html", mood=mood)
 
 
 # start the server
