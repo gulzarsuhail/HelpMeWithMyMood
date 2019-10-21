@@ -26,5 +26,5 @@ urllib3==1.23
 URLObject==2.4.3
 watson-developer-cloud==2.1.0
 websocket-client==0.47.0
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 wrapt==1.10.11
